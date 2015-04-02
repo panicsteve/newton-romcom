@@ -33,15 +33,15 @@ _UndefinedInstruction:
 
 _SoftwareInterrupt:
 	@ label = '_SoftwareInterrupt'
-	b       VEC_SWIBoot               	@ 0x00000008 0xEA6C2101 - .l!. 
+	b       VEC_SWIBoot               	@ [0x00000008] 0xEA6C2101 - .l!. 
 
 _AbortPrefetch:
 	@ label = '_AbortPrefetch'
-	b       VEC_PrefetchAbortHandler  	@ 0x0000000C 0xEA67FFFF - .g.. 
+	b       VEC_PrefetchAbortHandler  	@ [0x0000000C] 0xEA67FFFF - .g.. 
 
 _AbortData:
 	@ label = '_AbortData'
-	b       DataAbortHandler          	@ 0x00000010 0xEA0E4C3F - ..L? 
+	b       DataAbortHandler          	@ [0x00000010] 0xEA0E4C3F - ..L? 
 ```
 
 ## Sample comments file:
@@ -82,13 +82,13 @@ _UndefinedInstruction:
 
 _SoftwareInterrupt:
 	@ label = '_SoftwareInterrupt'
-	b       VEC_SWIBoot               	@ 0x00000008 0xEA6C2101 - .l!. 
+	b       VEC_SWIBoot               	@ [0x00000008] 0xEA6C2101 - .l!. 
 
 _AbortPrefetch:
 	@ label = '_AbortPrefetch'
-	b       VEC_PrefetchAbortHandler  	@ 0x0000000C 0xEA67FFFF - .g.. 
+	b       VEC_PrefetchAbortHandler  	@ [0x0000000C] 0xEA67FFFF - .g.. 
 
 _AbortData:
 	@ label = '_AbortData'
-	b       DataAbortHandler          	@ 0x00000010 0xEA0E4C3F - ..L? 
+	b       DataAbortHandler          	@ [0x00000010] 0xEA0E4C3F - ..L? 
 ```
