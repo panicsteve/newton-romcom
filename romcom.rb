@@ -15,9 +15,9 @@
 # uses as anchor points to find where to insert the comments.  An example
 # line of disassembly:
 #
-#        b       ROMBoot          @[00000000] 0xEA0061A0 - ..a.
+#        b       ROMBoot          @ 0x00000000 0xEA0061A0 - ..a.
 #
-# b is the instruction, ROMBoot is a symbol, @[00000000] is the address tag
+# b is the instruction, ROMBoot is a symbol, @ 0x00000000 is the address tag
 # this script will look for, 0xEA0061A0 is the hex value of the instruction
 # and ..a. is that hex rendered as ASCII text.
 #
@@ -96,7 +96,7 @@ while comment_line = comments.gets() do
 			puts ">> evaluating: #{disassembly_line}"
 		end		
 		
-		regex = /\@\[0x([0123456789ABCDEF]+)\]/
+		regex = /\@ 0x([0123456789ABCDEF]+) /
 		match = disassembly_line.match(regex)
 
 		if !match.nil?
