@@ -83,6 +83,7 @@ while comment_line = comments.gets() do
 			
 			puts "\t#{comment_text}"
 			next
+
 		elsif comment_type == INLINE
 			if !saved_disassembly_line.nil?
 				# Showing an inline comment that we've been holding onto
@@ -93,6 +94,11 @@ while comment_line = comments.gets() do
 				next
 			end
 		end	
+	else
+		if !saved_disassembly_line.nil?
+			puts saved_disassembly_line
+			saved_disassembly_line = nil
+		end
 	end
 	
 	# Iterate through disassembly looking for the next address tag
@@ -129,7 +135,7 @@ while comment_line = comments.gets() do
 					saved_disassembly_line = disassembly_line
 					
 					if DEBUG 
-						puts ">> saving for later"
+						puts ">> saving for later: #{saved_disassembly_line}"
 					end
 					break
 					

@@ -7,4 +7,11 @@
 00000008 ' @@ ARM CPU vector for SWI (Software Interrupt)
 0000000C ' @@ ARM CPU vector for Prefetch Aborts
 00000010 ' @@ ARM CPU vector for Data Aborts
-
+00000014 ' @@ Reserved (unused) ARM CPU vector
+00000018 ' @@ ARM CPU vector for IRQ (Interrupt Requests)
+0000001C ' @@ ARM CPU vector for FIQ (Fast Interrupt Requests)
+00000020 ' @@ Chunk of data / globals (0x00000020 - 0x000003FF)
+00000400 ' @@ MMU Table for the first 256k of ROM (0x00000400 - 0x000007FF)
+00000800 ' @@ Unknown data (0x00000800 - 0x00001FFF)
+00002000 ' @@ ARM jump tables (0x00002000 - 0x00012FFF)
+00013000 ' @@ ROM Public Jump Table (0x00013000 - 0x00015E0B)
