@@ -58,16 +58,16 @@ saved_disassembly_line = nil
 # Iterate line-by-line through comments file
 
 while comment_line = comments.gets() do
-	if comment_line.chomp == '' 
-		if saved_disassembly_line
-			puts saved_disassembly_line
-			saved_disassembly_line = nil
-		end
-		next
-	end
-
+	
 	regex = /^([0123456789ABCDEF]+) (['\-]) (.*)$/
-	captures = comment_line.match(regex).captures
+	matches = comment_line.match(regex)
+	
+	if matches.nil?
+		captures = [];
+	else
+		captures = matches.captures
+	end
+	
 	comment_pc = captures[0]
 	comment_type = captures[1] # ABOVE or INLINE
 	comment_text = captures[2]
@@ -101,7 +101,7 @@ while comment_line = comments.gets() do
 		# Look for an address tag on this line of disassembly
 
 		if DEBUG
-			puts ">> evaluating: #{disassembly_line}"
+			puts ">> read from disassembly: #{disassembly_line}"
 		end	
 		
 		regex = /\@ 0x([0123456789ABCDEF]+) /
@@ -109,9 +109,13 @@ while comment_line = comments.gets() do
 
 		if !match.nil?
 			# Found an address tag
-			
+
 			captures = match.captures
 			disassembly_pc = captures[0]
+
+			if DEBUG
+				puts ">> found an address tag (#{disassembly_pc})"
+			end			
 
 			if comment_pc == disassembly_pc
 				# Insert the comment if the addresses match up
@@ -123,6 +127,10 @@ while comment_line = comments.gets() do
 					# printed yet until the "above" comment is done.
 					
 					saved_disassembly_line = disassembly_line
+					
+					if DEBUG 
+						puts ">> saving for later"
+					end
 					break
 					
 				elsif comment_type == INLINE
@@ -135,6 +143,15 @@ while comment_line = comments.gets() do
 				saved_disassembly_line = nil
 			end
 		else
+			if DEBUG
+				puts ">> no address tag"
+			end
+			
+			if saved_disassembly_line
+				puts saved_disassembly_line
+				saved_disassembly_line = nil
+			end
+
 			puts disassembly_line
 			saved_disassembly_line = nil
 		end		
