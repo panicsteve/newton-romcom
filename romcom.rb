@@ -58,6 +58,10 @@ saved_disassembly_line = nil
 # Iterate line-by-line through comments file
 
 while comment_line = comments.gets() do
+	if comment_line.chomp == ''
+		next
+	end
+	
 	regex = /^([0123456789ABCDEF]+) (['\-]) (.*)$/
 	captures = comment_line.match(regex).captures
 	comment_pc = captures[0]
